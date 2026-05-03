@@ -128,73 +128,122 @@ mol-generalization-benchmark/
 │
 └── report/
 ```
-How to Run
-1. Create and activate a virtual environment
+## How to Run
+
+### 1. Create and activate a virtual environment
+
+Create a virtual environment:
+
+```bash
 python -m venv .venv
+```
 
-On Windows:
+Activate it on **Windows**:
 
+```bash
 .venv\Scripts\activate
+```
 
-On macOS/Linux:
+Activate it on **macOS/Linux**:
 
+```bash
 source .venv/bin/activate
-2. Install dependencies
+```
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
-3. Run one experiment
+```
 
-Example: random split + Logistic Regression
+### 3. Run one experiment
 
+The `run_experiment.py` script supports **one split strategy** and **one model** at a time.
+
+Example: **random split + Logistic Regression**
+
+```bash
 python run_experiment.py --split random --model logistic_regression
+```
 
-Example: scaffold split + Random Forest
+Example: **scaffold split + Random Forest**
 
+```bash
 python run_experiment.py --split scaffold --model random_forest
+```
 
-Supported split options:
+### Supported split options
 
-random
-scaffold
+- `random`
+- `scaffold`
 
-Supported model options:
+### Supported model options
 
-logistic_regression
-random_forest
-4. Generate the metrics summary
+- `logistic_regression`
+- `random_forest`
+
+### 4. Generate the metrics summary
+
+```bash
 python src/evaluation/metrics.py
+```
 
 This saves the summary table to:
 
+```text
 results/tables/bbbp_metrics_summary.csv
-5. Generate result figures
+```
+
+### 5. Generate result figures
+
+```bash
 python src/visualization/plot_results.py
+```
 
 This saves figures to:
 
+```text
 results/figures/
-Current Scope and Limitations
+```
 
-This project is currently limited to:
+---
 
-one dataset: BBBP
-one molecular representation: Morgan fingerprint
-two baseline models: Logistic Regression and Random Forest
-two split strategies: Random Split and Scaffold Split
+## Current Scope and Limitations
 
-Current limitations include:
+### Current scope
 
-no graph neural network baselines yet
-no similarity-based or cluster-based split yet
-no multi-dataset benchmark yet
-no detailed error analysis yet
-Future Work
+This project currently includes:
+
+- **one dataset**: BBBP
+- **one molecular representation**: Morgan fingerprint
+- **two baseline models**: Logistic Regression and Random Forest
+- **two split strategies**: Random Split and Scaffold Split
+
+### Current limitations
+
+This project does **not yet** include:
+
+- graph neural network baselines
+- similarity-based split
+- cluster-based split
+- multi-dataset benchmark experiments
+- detailed error analysis
+
+---
+
+## Future Work
 
 Possible future extensions include:
 
-adding similarity split and cluster split
-evaluating graph neural network baselines
-extending the benchmark to more molecular datasets
-performing deeper error analysis on false positives and false negatives
-Summary
+- adding **similarity split** and **cluster split**
+- evaluating **graph neural network** baselines
+- extending the benchmark to more molecular datasets
+- performing deeper error analysis on false positives and false negatives
 
-This project builds a reproducible benchmark pipeline for evaluating molecular generalization under different data splitting strategies. The first-stage results suggest that random split may overestimate model performance, while scaffold split provides a stricter and more realistic test of structural generalization in molecular property prediction.
+---
+
+## Summary
+
+This project builds a reproducible benchmark pipeline for evaluating molecular generalization under different data splitting strategies.
+
+The first-stage results suggest that **random split may overestimate model performance**, while **scaffold split provides a stricter and more realistic test of structural generalization** in molecular property prediction.
