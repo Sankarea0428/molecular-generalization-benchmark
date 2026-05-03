@@ -10,9 +10,7 @@ PROCESSED_DATA_PATH = PROJECT_ROOT / "data" / "processed" / "bbbp_clean.csv"
 
 
 def find_column(df: pd.DataFrame, candidate_names: list[str]) -> str:
-    """
-    Find the first existing column name from a list of possible column names.
-    """
+# 从可能的列名列表中找到存在的列名。
     for name in candidate_names:
         if name in df.columns:
             return name
@@ -24,10 +22,9 @@ def find_column(df: pd.DataFrame, candidate_names: list[str]) -> str:
 
 
 def load_and_clean_bbbp(raw_path: Path = RAW_DATA_PATH) -> pd.DataFrame:
-    """
-    Load BBBP dataset, standardize columns, remove missing SMILES,
-    and return a cleaned DataFrame with two columns: smiles and label.
-    """
+
+    # 加载BBBP数据 标准化列 删除无SMILES结构缺失样本 返回数据集 仅保留smiles的分子结构式以及相应的分子标签
+
     if not raw_path.exists():
         raise FileNotFoundError(
             f"Cannot find raw dataset at: {raw_path}\n"
@@ -68,9 +65,7 @@ def load_and_clean_bbbp(raw_path: Path = RAW_DATA_PATH) -> pd.DataFrame:
 
 
 def save_clean_bbbp(clean_df: pd.DataFrame, output_path: Path = PROCESSED_DATA_PATH) -> None:
-    """
-    Save the cleaned BBBP dataset.
-    """
+# 保存已经缓存的数据集
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     clean_df.to_csv(output_path, index=False)
