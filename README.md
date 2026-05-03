@@ -127,6 +127,7 @@ mol-generalization-benchmark/
 │   └── figures/
 │
 └── report/
+```
 How to Run
 1. Create and activate a virtual environment
 python -m venv .venv
